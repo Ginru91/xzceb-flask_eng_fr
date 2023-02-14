@@ -30,31 +30,46 @@ language_translator = LanguageTranslatorV3(
 
 language_translator.set_service_url(url)
 
-en_text = input('Enter english text: ')
+# Input text values for translation
+# Need to test traslation fuctions
+en_text = input('Enter english text: ') 
 fr_text = input('Enter french text: ')
 
-
-def tranlate_en_to_fr(en_text): #Translation from english to french
-    if language_model.count('en-fr') == True: # Check for existance of language model English to French
+if language_model.count('en-fr') == True: # Check for existance of language model English to French
+    def tranlate_en_to_fr(en_text): #Translation from english to french
+        
         language_model_en_to_fr = language_model[language_model.index('en-fr')]
-    translate_to_french = language_translator.translate(
-        text = en_text, 
-        model_id = language_model_en_to_fr).get_result()
-    translated_text = translate_to_french['translations'][0]['translation']
-    translated_word_count = translate_to_french['word_count']
-    return translated_text, translated_word_count
+        translate_to_french = language_translator.translate(
+            text = en_text, 
+            model_id = language_model_en_to_fr).get_result()
+        translated_text = translate_to_french['translations'][0]['translation']
+        translated_word_count = translate_to_french['word_count']
+        return translated_text, translated_word_count
 
-def translate_fr_to_en(fr_text): #Translation from french to english
-    if language_model.count('fr-en') == True: # Check for existance of language model French to English
+if language_model.count('fr-en') == True: # Check for existance of language model French to English
+    def translate_fr_to_en(fr_text): #Translation from french to english
         language_model_fr_to_en = language_model[language_model.index('fr-en')]
-    translate_to_english = language_translator.translate(
-        text = fr_text,
-        model_id = language_model_fr_to_en).get_result()
-    translated_text = translate_to_english['translations'][0]['translation']
-    translated_word_count = translate_to_english['word_count']
-    return translated_text, translated_word_count
+        translate_to_english = language_translator.translate(
+            text = fr_text,
+            model_id = language_model_fr_to_en).get_result()
+        translated_text = translate_to_english['translations'][0]['translation']
+        translated_word_count = translate_to_english['word_count']
+        return translated_text, translated_word_count
 
-fr_translated_text = tranlate_en_to_fr(en_text)
-en_translated_text = translate_fr_to_en(fr_text)
-print('French: ', fr_translated_text[0], '\nWords: ', fr_translated_text[1])
-print('English: ', en_translated_text[0], '\nWords: ', en_translated_text[1])
+try: # Print French text if no errors occured
+    fr_translated_text = tranlate_en_to_fr(en_text)
+except NameError:
+    print('Currently translation from English to French not availible, try again later')
+except:
+    print('Something went wrong')
+else:
+    print('French: ', fr_translated_text[0], '\nWords: ', fr_translated_text[1])
+
+try: # Print English text if no errors occured
+    en_translated_text = translate_fr_to_en(fr_text)
+except NameError:
+    print('Currently translation from French to English not availible, try again later')
+except:
+    print('Something went wrong')
+else:
+    print('English: ', en_translated_text[0], '\nWords: ', en_translated_text[1])
