@@ -1,5 +1,6 @@
 from . import translator
-from machinetranslation.tests import test
+# from machinetranslation.tests import test
+# import os
 #from machinetranslation. import env
 # from decouple import config
 # from dotenv import load_dotenv
