@@ -8,19 +8,22 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from dotenv import load_dotenv
 
 load_dotenv()
-APIKEY = os.environ['apikey']
-URL = os.environ['url']
-VERSION = os.environ['version']
-LANGUAGES = os.environ['languages']
 
-LANGUAGESMODEL = [] # list translation language models
-for i in LANGUAGES.split(', '):
-    LANGUAGESMODEL.append(i)
+# APIKEY = os.environ['apikey']
+# URL = os.environ['url']
+# VERSION = os.environ['version']
+# LANGUAGES = os.environ['languages']
 
-# APIKEY = 'z0b60USzr0sR6Svin21m4C6_XvDPOdFn4dWI4wVYUL39'
-# URL = 'https://api.eu-de.language-translator.watson.cloud.ibm.com/instances/b3e88f57-f1cd-4eaa-9515-bf8aae55a37c'
-# VERSION = '2018-05-01'
-# LANGUAGESMODEL = 'en-fr'
+APIKEY = 'z0b60USzr0sR6Svin21m4C6_XvDPOdFn4dWI4wVYUL39'
+URL = 'https://api.eu-de.language-translator.watson.cloud.ibm.com/instances/b3e88f57-f1cd-4eaa-9515-bf8aae55a37c'
+VERSION = '2018-05-01'
+LANGUAGESMODEL = ['en-fr', 'fr-en']
+
+# LANGUAGES = [] # list translation language models
+# for i in LANGUAGES.split(', '):
+#     LANGUAGESMODEL.append(i)
+
+
 
 AUTHENTICATOR = IAMAuthenticator(APIKEY) #Authenticate to IBM Watson language translator
 LANGUAGE_TRANSLATOR = LanguageTranslatorV3(
