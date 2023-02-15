@@ -19,12 +19,6 @@ URL = 'https://api.eu-de.language-translator.watson.cloud.ibm.com/instances/b3e8
 VERSION = '2018-05-01'
 LANGUAGESMODEL = ['en-fr', 'fr-en']
 
-# LANGUAGES = [] # list translation language models
-# for i in LANGUAGES.split(', '):
-#     LANGUAGESMODEL.append(i)
-
-
-
 AUTHENTICATOR = IAMAuthenticator(APIKEY) #Authenticate to IBM Watson language translator
 LANGUAGE_TRANSLATOR = LanguageTranslatorV3(
     version=VERSION,
@@ -32,10 +26,7 @@ LANGUAGE_TRANSLATOR = LanguageTranslatorV3(
 )
 
 LANGUAGE_TRANSLATOR.set_service_url(URL)
-# Input text values for translation
-# Need to test traslation fuctions
-# enText = input('Enter english text: ')
-# frText = input('Enter french text: ')
+
 if LANGUAGESMODEL.count('en-fr') == 1: # Check if language model English to French exist
     def english_to_french(english_text):
         """
@@ -62,16 +53,3 @@ if LANGUAGESMODEL.count('fr-en') == 1: # Check if language model French to Engli
         #englishTextCount = translate_to_english['word_count']
         return english_text
 
-# try: # Print French text if no errors occured
-#     FRTRANSLATEDTEXT = english_to_french(english_text)
-# except NameError:
-#     print('Currently translation from English to French not availible, try again later')
-# else:
-#     print('French: ', FRTRANSLATEDTEXT[0], '\nWords: ', FRTRANSLATEDTEXT[1])
-
-# try: # Print English text if no errors occured
-#     ENTRANSLATEDTEXT = french_to_english()
-# except NameError:
-#     print('Currently translation from French to English not availible, try again later')
-# else:
-#     print('English: ', ENTRANSLATEDTEXT[0], '\nWords: ', ENTRANSLATEDTEXT[1])
