@@ -13,7 +13,7 @@ APIKEY = os.environ['apikey']
 URL = os.environ['url']
 VERSION = os.environ['version']
 LANGUAGES = os.environ['languages']
-export APIKEY
+
 LANGUAGESMODEL = [] # list translation language models
 for i in LANGUAGES.split(', '):
     LANGUAGESMODEL.append(i)
