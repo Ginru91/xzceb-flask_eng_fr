@@ -25,10 +25,7 @@ LANGUAGE_TRANSLATOR = LanguageTranslatorV3(
 )
 
 LANGUAGE_TRANSLATOR.set_service_url(URL)
-# Input text values for translation
-# Need to test traslation fuctions
-# enText = input('Enter english text: ')
-# frText = input('Enter french text: ')
+
 if LANGUAGESMODEL.count('en-fr') == 1: # Check if language model English to French exist
     def englishToFrench(englishText):
         """
