@@ -9,21 +9,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# APIKEY = os.environ['apikey']
-# URL = os.environ['url']
-# VERSION = os.environ['version']
-# LANGUAGES = os.environ['languages']
+APIKEY = os.environ['apikey']
+URL = os.environ['url']
+VERSION = os.environ['version']
+LANGUAGES = os.environ['languages']
 
-APIKEY = 'z0b60USzr0sR6Svin21m4C6_XvDPOdFn4dWI4wVYUL39'
-URL = 'https://api.eu-de.language-translator.watson.cloud.ibm.com/instances/b3e88f57-f1cd-4eaa-9515-bf8aae55a37c'
-VERSION = '2018-05-01'
-LANGUAGESMODEL = ['en-fr', 'fr-en']
-
-# LANGUAGES = [] # list translation language models
-# for i in LANGUAGES.split(', '):
-#     LANGUAGESMODEL.append(i)
-
-
+LANGUAGESMODEL = [] # list translation language models
+for i in LANGUAGES.split(', '):
+    LANGUAGESMODEL.append(i)
 
 AUTHENTICATOR = IAMAuthenticator(APIKEY) #Authenticate to IBM Watson language translator
 LANGUAGE_TRANSLATOR = LanguageTranslatorV3(
@@ -37,30 +30,30 @@ LANGUAGE_TRANSLATOR.set_service_url(URL)
 # enText = input('Enter english text: ')
 # frText = input('Enter french text: ')
 if LANGUAGESMODEL.count('en-fr') == 1: # Check if language model English to French exist
-    def english_to_french(english_text):
+    def englishToFrench(englishText):
         """
         Translation from english to french
         """
         language_model_to_french = LANGUAGESMODEL[LANGUAGESMODEL.index('en-fr')]
         translate_to_french = LANGUAGE_TRANSLATOR.translate(
-            text=english_text,
+            text=englishText,
             model_id=language_model_to_french).get_result()
-        french_text = translate_to_french['translations'][0]['translation']
+        frenchText = translate_to_french['translations'][0]['translation']
         #frenchTextWordCount = translateToFrench['word_count']
-        return french_text
+        return frenchText
 
 if LANGUAGESMODEL.count('fr-en') == 1: # Check if language model French to English exist
-    def french_to_english(french_text):
+    def frenchToEnglish(frenchText):
         """
         Translation from french to english
         """
         language_model_to_english = LANGUAGESMODEL[LANGUAGESMODEL.index('fr-en')]
         translate_to_english = LANGUAGE_TRANSLATOR.translate(
-            text=french_text,
+            text=frenchText,
             model_id=language_model_to_english).get_result()
-        english_text = translate_to_english['translations'][0]['translation']
+        englishText = translate_to_english['translations'][0]['translation']
         #englishTextCount = translate_to_english['word_count']
-        return english_text
+        return englishText
 
 # try: # Print French text if no errors occured
 #     FRTRANSLATEDTEXT = english_to_french(english_text)
